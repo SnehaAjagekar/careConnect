@@ -182,3 +182,26 @@ body {
 		opacity: 0.4;
 	}
 }
+
+@media (max-width: 600px) {
+	.support-page {
+		padding: 40px 12px 80px;
+	}
+
+	.support-shell {
+		gap: 24px;
+	}
+
+	.support-title {
+		font-size: clamp(24px, 5vw, 32px);
+	}
+
+	.support-subtitle {
+		font-size: 14px;
+	}
+
+	.support-highlight {
+		font-size: 13px;
+		padding: 10px 12px;
+	}
+}

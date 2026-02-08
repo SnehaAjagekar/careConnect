@@ -41,8 +41,8 @@ const SupportForm = () => {
     }
     if (!phoneValue) {
       nextErrors.phone = "Phone number is required.";
-    } else if (!/^[+\d][\d\s()-]{7,}$/.test(phoneValue)) {
-      nextErrors.phone = "Enter a valid phone number.";
+    } else if (!/^\d{10}$/.test(phoneValue)) {
+      nextErrors.phone = "Enter a valid 10-digit phone number.";
     }
     if (!roleValue) nextErrors.role = "Please select your role.";
     if (!messageValue) {
@@ -147,17 +147,17 @@ const SupportForm = () => {
   const chatOverlayStyle = {
     position: "fixed",
     bottom: "100px",
-    right: "30px",
-    width: "400px",
-    height: "550px",
+    right: "10px",
+    width: "clamp(280px, 85vw, 320px)",
+    height: "clamp(400px, 70vh, 520px)",
     backgroundColor: "#fff",
     borderRadius: "15px",
     boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
     zIndex: 1001,
-    display: isChatOpen ? "flex" : "none", // Toggle visibility
+    display: isChatOpen ? "flex" : "none",
     flexDirection: "column",
     overflow: "hidden",
-    border: "1px solid #eee"
+    border: "1px solid #eee",
   };
 
   return (
@@ -193,12 +193,12 @@ const SupportForm = () => {
           <div style={{ display: "flex", gap: "15px" }}>
             <div style={{ flex: 1 }}>
               <label style={labelStyle}>Email Address</label>
-              <input className="support-input" type="email" name="email" placeholder="name@company.com" value={formData.email} onChange={handleChange} required style={getInputStyle("email")} />
+              <input className="support-input" type="email" name="email" placeholder="name@gmail.com" value={formData.email} onChange={handleChange} required style={getInputStyle("email")} />
               {errors.email && <div style={errorTextStyle}>{errors.email}</div>}
             </div>
             <div style={{ flex: 1 }}>
               <label style={labelStyle}>Phone Number</label>
-              <input className="support-input" type="tel" name="phone" placeholder="+1 (555) 000-0000" value={formData.phone} onChange={handleChange} required style={getInputStyle("phone")} />
+              <input className="support-input" type="tel" name="phone" placeholder="+91 XXXXX XXXXX" value={formData.phone} onChange={handleChange} required style={getInputStyle("phone")} />
               {errors.phone && <div style={errorTextStyle}>{errors.phone}</div>}
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const faqs = [
   {
@@ -34,8 +34,13 @@ function FaqChatbot() {
       sender: "bot",
       text: "Hello! 👋 I’m here to help. Please select a question below.",
     },
-  ]);
+  ]);  const chatWindowRef = useRef(null);
 
+  useEffect(() => {
+    if (chatWindowRef.current) {
+      chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+    }
+  }, [chat]);
   const handleQuestionClick = (faq) => {
     setChat((prevChat) => [
       ...prevChat,
@@ -48,7 +53,7 @@ function FaqChatbot() {
     <div style={styles.chatbotContainer}>
       <h3 style={styles.heading}>Healthcare FAQ Assistant</h3>
 
-      <div style={styles.chatWindow}>
+      <div style={styles.chatWindow} ref={chatWindowRef}>
         {chat.map((msg, index) => (
           <div
             key={index}
@@ -81,56 +86,74 @@ function FaqChatbot() {
 const styles = {
   chatbotContainer: {
     width: "100%",
-    maxWidth: "400px",
-    margin: "40px auto",
-    padding: "15px",
-    borderRadius: "10px",
-    backgroundColor: "#f9fafb",
-    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-    fontFamily: "Arial, sans-serif",
+    maxWidth: "340px",
+    margin: "0 auto",
+    padding: "16px",
+    borderRadius: "14px",
+    backgroundColor: "#f8fafc",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+    fontFamily: "'Manrope', Arial, sans-serif",
+    display: "flex",
+    flexDirection: "column",
+    height: "100%",
+    overflow: "hidden",
   },
   heading: {
     textAlign: "center",
-    marginBottom: "10px",
+    margin: "0 0 14px 0",
+    fontSize: "16px",
+    fontWeight: "600",
+    color: "#1b2535",
   },
   chatWindow: {
-    height: "220px",
+    height: "200px",
     overflowY: "auto",
     backgroundColor: "#ffffff",
-    padding: "10px",
-    borderRadius: "5px",
-    marginBottom: "10px",
+    padding: "12px",
+    borderRadius: "10px",
+    marginBottom: "12px",
     display: "flex",
     flexDirection: "column",
+    gap: "6px",
+    border: "1px solid #e2e8f0",
   },
   botMsg: {
-    backgroundColor: "#e3f2fd",
-    padding: "8px",
-    borderRadius: "5px",
-    marginBottom: "6px",
-    fontSize: "14px",
+    backgroundColor: "#dbeafe",
+    padding: "10px 12px",
+    borderRadius: "8px",
+    marginBottom: "2px",
+    fontSize: "13px",
     alignSelf: "flex-start",
-    maxWidth: "80%",
+    maxWidth: "85%",
+    wordWrap: "break-word",
+    color: "#1e40af",
+    lineHeight: "1.4",
   },
   userMsg: {
-    backgroundColor: "#d1fae5",
-    padding: "8px",
-    borderRadius: "5px",
-    marginBottom: "6px",
-    fontSize: "14px",
+    backgroundColor: "#dcfce7",
+    padding: "10px 12px",
+    borderRadius: "8px",
+    marginBottom: "2px",
+    fontSize: "13px",
     alignSelf: "flex-end",
-    maxWidth: "80%",
+    maxWidth: "85%",
+    wordWrap: "break-word",
+    color: "#166534",
+    lineHeight: "1.4",
   },
   faqButton: {
     width: "100%",
-    margin: "4px 0",
-    padding: "8px",
-    border: "none",
-    borderRadius: "5px",
-    backgroundColor: "#2563eb",
-    color: "white",
+    margin: "6px 0",
+    padding: "10px 12px",
+    border: "1px solid #2563eb",
+    borderRadius: "8px",
+    backgroundColor: "#ffffff",
+    color: "#2563eb",
     cursor: "pointer",
-    fontSize: "13px",
+    fontSize: "12px",
+    fontWeight: "500",
+    transition: "all 0.2s ease",
+    textAlign: "left",
   },
 };
 
