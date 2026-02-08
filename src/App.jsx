@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import SupportForm from './components/SupportForm'
 import Chatbot from './components/Chatbot'
+import FaqChatbot from './components/FaqChatbot'
 
 
 
@@ -11,7 +12,6 @@ function App() {
     
     <div>
       <SupportForm/>
-      <Chatbot/>
     </div>
   )
 }
