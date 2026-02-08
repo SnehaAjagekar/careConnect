@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import SupportForm from './components/SupportForm'
+import Chatbot from './components/Chatbot'
 
 
 
@@ -6,7 +8,11 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div>DevConnect</div>
+    
+    <div>
+      <SupportForm/>
+      <Chatbot/>
+    </div>
   )
 }
 
